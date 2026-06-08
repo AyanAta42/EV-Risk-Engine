@@ -1,0 +1,17 @@
+body {
+  margin: 16px;
+  font-family: sans-serif;
+}
+
+.list {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #999;
+  margin-top: 12px;
+}
+
+.row {
+  padding: 6px 8px;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+}
