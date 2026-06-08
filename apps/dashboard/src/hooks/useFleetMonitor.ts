@@ -9,10 +9,17 @@ export function useFleetMonitor() {
   const [carCount, setCarCount] = useState(5)
 
   useEffect(() => {
-    const onTelemetry = (data: CarTelemetry) =>
-      setCars((prev) => ({ ...prev, [data.carId]: data }))
-    socket.on('telemetry', onTelemetry)
-    return () => { socket.off('telemetry', onTelemetry) }
+    const onBatch = (data: CarTelemetry[]) =>
+      setCars((prev) => {
+        const next = { ...prev }
+        for (const car of data) next[car.carId] = car
+        return next
+      })
+
+    socket.on('telemetry-batch', onBatch)
+    return () => {
+      socket.off('telemetry-batch', onBatch)
+    }
   }, [])
 
   const toggleSimulation = async () => {

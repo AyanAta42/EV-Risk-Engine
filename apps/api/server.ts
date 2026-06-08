@@ -2,7 +2,7 @@ import express from 'express';
 import http from 'http';
 import cors from 'cors'; // Added CORS so your React app can talk to the API
 import { initSocket } from './services/socket-manager';
-import { handleTelemetry } from './routes/telemetry';
+import { handleTelemetry, handleTelemetryBatch } from './routes/telemetry';
 import { handleSimRequest } from '../data/simulation/simulation_trigger';
 
 const app = express();
@@ -10,7 +10,7 @@ const server = http.createServer(app);
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '2mb' }));
 
 app.get('/health', (_req, res) => res.status(200).send('ok'));
 
@@ -19,6 +19,7 @@ initSocket(server);
 
 // 2. The Listener endpoint for your Simulator/Teslas
 app.post('/api/telemetry', handleTelemetry);
+app.post('/api/telemetry/batch', handleTelemetryBatch);
 
 // 3. The Trigger endpoint for the UI Start/Stop button
 app.post('/api/simulate', handleSimRequest);

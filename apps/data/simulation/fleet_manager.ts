@@ -1,5 +1,7 @@
 import { generateTelemetry } from './car_logic'
 
+const API_URL = process.env.API_URL ?? 'http://localhost:3000'
+
 let interval: ReturnType<typeof setInterval> | null = null
 
 export const manageFleet = (count: number, active: boolean) => {
@@ -16,13 +18,14 @@ export const manageFleet = (count: number, active: boolean) => {
   }
 
   interval = setInterval(() => {
-    for (let i = 0; i < count; i++) {
-      const data = generateTelemetry(`sim-car-${i}`)
-      fetch('http://localhost:3000/api/telemetry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      })
-    }
+    const readings = Array.from({ length: count }, (_, i) =>
+      generateTelemetry(`sim-car-${i}`),
+    )
+
+    fetch(`${API_URL}/api/telemetry/batch`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ readings }),
+    }).catch((err) => console.error('Batch telemetry failed:', err))
   }, 1000)
 }

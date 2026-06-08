@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import type { CarTelemetry } from '../types/telemetry'
 
 type FleetListProps = {
@@ -10,9 +11,9 @@ export function FleetList({ cars }: FleetListProps) {
   return (
     <div className="list">
       {cars.map((car) => (
-        <div key={car.carId} className="row">
+        <Link key={car.carId} to={`/${car.carId}`} className="row">
           {car.carId} | score: {car.safety_score.toFixed(0)} | {car.speed} mph
-        </div>
+        </Link>
       ))}
     </div>
   )

@@ -12,3 +12,7 @@ export const initSocket = (server: HttpServer) => {
 export const broadcastToUI = (data: unknown) => {
   io?.emit('telemetry', data)
 }
+
+export const broadcastBatchToUI = (data: unknown[]) => {
+  io?.emit('telemetry-batch', data)
+}
