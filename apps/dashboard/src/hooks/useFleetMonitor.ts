@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { API_URL } from '../lib/config'
 import { socket } from '../lib/socket'
 import type { CarTelemetry } from '../types/telemetry'
 
@@ -16,7 +17,7 @@ export function useFleetMonitor() {
 
   const toggleSimulation = async () => {
     const next = !isSimulating
-    await fetch('http://localhost:3000/api/simulate', {
+    await fetch(`${API_URL}/api/simulate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ count: carCount, status: next }),

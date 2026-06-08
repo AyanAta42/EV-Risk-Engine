@@ -12,6 +12,8 @@ const server = http.createServer(app);
 app.use(cors());
 app.use(express.json());
 
+app.get('/health', (_req, res) => res.status(200).send('ok'));
+
 // 1. Initialize WebSockets for the live Dashboard
 initSocket(server);
 
