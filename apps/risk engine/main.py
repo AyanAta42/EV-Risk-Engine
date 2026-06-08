@@ -7,6 +7,7 @@ app = FastAPI()
 class Telemetry(BaseModel):
     carId: str
     speed: float
+    battery: float | None = None
     lat: float
     lng: float
     timestamp: str

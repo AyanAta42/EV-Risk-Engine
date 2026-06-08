@@ -7,6 +7,7 @@ RUN npm ci
 
 COPY apps/api ./
 COPY apps/data /app/data
+COPY apps/shared /app/shared
 
 ENV RISK_ENGINE_URL=http://risk-engine:5000
 ENV CORS_ORIGIN=http://localhost:5173

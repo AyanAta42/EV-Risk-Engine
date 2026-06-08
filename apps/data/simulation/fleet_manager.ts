@@ -1,4 +1,5 @@
 import { generateTelemetry } from './car_logic'
+import { carId } from '../../shared/constants'
 
 const API_URL = process.env.API_URL ?? 'http://localhost:3000'
 
@@ -19,7 +20,7 @@ export const manageFleet = (count: number, active: boolean) => {
 
   interval = setInterval(() => {
     const readings = Array.from({ length: count }, (_, i) =>
-      generateTelemetry(`sim-car-${i}`),
+      generateTelemetry(carId(i)),
     )
 
     fetch(`${API_URL}/api/telemetry/batch`, {

@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
+import { formatSpeed } from '@shared/constants'
 import { useFleetMonitorContext } from '../context/FleetMonitorContext'
 import { useCarFeed } from '../hooks/useCarFeed'
 
@@ -31,7 +32,8 @@ export function CarPage() {
       ) : (
         <div className="list">
           <div className="row">
-            {latest.carId} | score: {latest.safety_score.toFixed(0)} | {latest.speed} mph
+            {latest.carId} | score: {latest.safety_score.toFixed(0)} | {formatSpeed(latest.speed)}
+            {latest.battery != null ? ` | battery: ${latest.battery.toFixed(1)}%` : ''}
             {latest.risk_level ? ` | ${latest.risk_level}` : ''}
           </div>
         </div>
