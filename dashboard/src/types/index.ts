@@ -32,4 +32,6 @@ export type SimulationControlsProps = {
 
 export type FleetCarListProps = {
   cars: CarReading[]
+  selectedCarId?: string
+  onSelect: (carId: string) => void
 }

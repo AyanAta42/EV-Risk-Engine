@@ -8,19 +8,34 @@ export function SimulationControls({
   onToggle,
 }: SimulationControlsProps) {
   return (
-    <div className="mt-3 flex flex-wrap items-center gap-3">
+    <div className="flex items-center gap-3">
       <input
         type="number"
         min={1}
         value={carCount}
         disabled={isSimulating}
         onChange={(e) => onCountChange(Math.max(1, +e.target.value || 1))}
-        className="w-24 rounded-lg border border-white/20 bg-black/30 px-3 py-2 text-white backdrop-blur-sm disabled:opacity-50"
+        className="w-20 rounded-lg px-3 py-2 text-center text-sm font-medium text-white outline-none disabled:opacity-40"
+        style={{
+          background: 'rgba(99,102,241,0.1)',
+          border: '1px solid rgba(99,102,241,0.3)',
+        }}
       />
       <button
         type="button"
         onClick={onToggle}
-        className="rounded-lg border border-white/30 bg-gradient-to-r from-white/20 to-white/5 px-4 py-2 font-medium text-white backdrop-blur-sm transition hover:from-white/30 hover:to-white/10"
+        className="rounded-lg px-5 py-2 text-sm font-semibold text-white transition-all duration-150"
+        style={{
+          background: isSimulating
+            ? 'rgba(239,68,68,0.2)'
+            : 'rgba(99,102,241,0.25)',
+          border: isSimulating
+            ? '1px solid rgba(239,68,68,0.5)'
+            : '1px solid rgba(99,102,241,0.5)',
+          boxShadow: isSimulating
+            ? '0 0 14px rgba(239,68,68,0.2)'
+            : '0 0 14px rgba(99,102,241,0.25)',
+        }}
       >
         {isSimulating ? 'Stop' : 'Start'}
       </button>

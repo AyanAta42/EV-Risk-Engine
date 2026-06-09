@@ -1,10 +1,28 @@
-/* Global styles — Tailwind import, background image, and page layout. */
+/* Global styles — deep purple/blue dark theme. */
 @import "tailwindcss";
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
-  @apply min-h-screen bg-[url('/background.png')] bg-cover bg-fixed bg-center text-white antialiased;
+  margin: 0;
+  background-color: #03030e;
+  color: #e2e8f0;
+  font-family: system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 #root {
-  @apply min-h-screen bg-gradient-to-b from-black/80 via-black/50 to-white/10 p-4 md:p-8;
+  height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 55% 45% at 15% 0%, rgba(99, 102, 241, 0.13) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 55% at 85% 100%, rgba(139, 92, 246, 0.09) 0%, transparent 65%),
+    #03030e;
 }
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.45); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(139, 92, 246, 0.7); }
