@@ -54,9 +54,9 @@ All three should show `healthy` or `running`.
 ## How data flows
 
 ```
-Simulator → POST /api/telemetry → API → POST /score → Risk Engine
-                                        ↓
-                              WebSocket → Dashboard
+Simulator → POST /api/telemetry/batch → API → POST /score/batch → Risk Engine
+                                              ↓
+                                    WebSocket telemetry-batch → Dashboard
 ```
 
 ## Project structure

@@ -1,0 +1,10 @@
+/* Global styles — Tailwind import, background image, and page layout. */
+@import "tailwindcss";
+
+body {
+  @apply min-h-screen bg-[url('/background.png')] bg-cover bg-fixed bg-center text-white antialiased;
+}
+
+#root {
+  @apply min-h-screen bg-gradient-to-b from-black/80 via-black/50 to-white/10 p-4 md:p-8;
+}

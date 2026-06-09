@@ -1,3 +1,4 @@
+# Files and folders excluded when Docker builds images.
 **/node_modules
 **/dist
 .git
